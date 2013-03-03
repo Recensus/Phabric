@@ -12,17 +12,6 @@ use Phabric\Phabric;
 
 require_once 'PHPUnit/Autoload.php';
 require_once 'PHPUnit/Framework/Assert/Functions.php';
-require_once __DIR__ . '/../../../Vendor/autoload.php';
-
-$phaLoader = new \Doctrine\Common\ClassLoader('Phabric', realpath(__DIR__ . '/../../../lib/'));
-$phaLoader->register();
-
-$docLoader = new \Doctrine\Common\ClassLoader('Doctrine\DBAL', __DIR__ . '/../../../lib/Vendor/Doctrine/lib');
-$docLoader->register();
-
-$docComLoader = new \Doctrine\Common\ClassLoader('Doctrine\Common', __DIR__ . '/../../../lib/Vendor/Doctrine/lib/vendor/doctrine-common/lib');
-$docComLoader->register();
-
 
 /**
  * Features context.

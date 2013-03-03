@@ -13,11 +13,14 @@
     ],
     "require": {
         "php":           ">=5.3",
-        "doctrine/dbal": ">=2.0@stable",
-        "behat/gherkin": ">=2@stable"
+        "behat/gherkin": ">=2@stable",
+        "behat/behat": "2.4.*@stable"
     },
     "require-dev": {
-        "mockery/mockery": ">=0.7@stable"
+        "mockery/mockery": ">=0.7@stable",
+        "phpunit/phpunit": "3.7.*@dev",
+        "zendframework/zendframework1": "1.12.*@dev",
+        "doctrine/dbal": ">=2.0@stable"
     },
     "autoload": {
         "psr-0": { "Phabric\\": "lib/" }
