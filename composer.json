@@ -22,6 +22,11 @@
         "zendframework/zendframework1": "1.12.*@dev",
         "doctrine/dbal": ">=2.0@stable"
     },
+    "suggest": {
+        "doctrine/dbal": "Required when using the Doctrine2 adapter",
+        "zendframework/zendframework1": "Required when using the ZendDb adapter"
+    },
+    
     "autoload": {
         "psr-0": { "Phabric\\": "lib/" }
     }
