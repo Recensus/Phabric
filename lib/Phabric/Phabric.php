@@ -187,6 +187,30 @@ class Phabric
     }
 
     /**
+     * A convience method taking the name of a previously created entity and
+     * an array. Data is inserted into the data source as if calling
+     * 'insertFromArray' on the named entity directly.
+     *
+     * @param string    $entityName Name of a previously created entity.
+     * @param TableNode $table
+     * @param boolean   $default    Determines if default data values should be applied.
+     *
+     */
+    public function insertFromArray($entityName, array $dataArray, $default = true)
+    {
+        $entity = $this->getEntity($entityName);
+
+        if($entity instanceof Entity)
+        {
+            return $entity->insertFromArray($dataArray, $default);
+        }
+        else
+        {
+            throw new \RuntimeException('Specified entity name does not map to registered entity');
+        }
+    }
+
+    /**
      * A convience method taking the name of a previously created entity and a
      * TableNode. Data is used to update previously inserted database records.
      *

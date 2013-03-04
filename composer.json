@@ -13,7 +13,6 @@
     ],
     "require": {
         "php":           ">=5.3",
-        "behat/gherkin": ">=2@stable",
         "behat/behat": "2.4.*@stable"
     },
     "require-dev": {
@@ -26,7 +25,6 @@
         "doctrine/dbal": "Required when using the Doctrine2 adapter",
         "zendframework/zendframework1": "Required when using the ZendDb adapter"
     },
-    
     "autoload": {
         "psr-0": { "Phabric\\": "lib/" }
     }

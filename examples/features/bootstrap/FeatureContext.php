@@ -10,7 +10,6 @@ use Behat\Gherkin\Node\PyStringNode,
 use Phabric\Factory as pFactory;
 use Phabric\Phabric;
 
-require_once 'PHPUnit/Autoload.php';
 require_once 'PHPUnit/Framework/Assert/Functions.php';
 
 /**
@@ -258,6 +257,29 @@ class FeatureContext extends BehatContext {
     public function iUsePhabricToUpdateDataNotManagedByPhabric(TableNode $table)
     {
         $this->phabric->updateFromTable('event', $table);
+    }
+    
+    /**
+     * @Given /^The events described in the featurecontext class exist$/
+     */
+    public function theEventsDescribedInTheFeaturecontextClassExist()
+    {
+        $data = array(
+           array(
+               "Name" => "PHPNW",
+               "Date" => "08/10/2011 09:00",
+               "Venue" => "Ramada Hotel",
+               "Desc" => "An awesome conf!"
+           ), 
+           array(
+               "Name" => "PHPUK",
+               "Date" => "27/02/2012 09:00",
+               "Venue" => "London Business Center",
+               "Desc" => "Quite good conf."
+           )
+        );
+        
+         $this->phabric->insertFromArray('event', $data);
     }
 
 

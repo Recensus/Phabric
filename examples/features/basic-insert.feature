@@ -3,7 +3,7 @@ Feature: Phabric Example
      I want to use nice colun headers in my Gherkin, tranform values from
      one format to another and make use of default values.
 
-Scenario:
+Scenario: Events created using tables save correctly
     Given The following events exist
     | Name  | Date             | Venue                  | Desc             |
     | PHPNW | 08/10/2011 09:00 | Ramada Hotel           | An awesome conf! |
@@ -14,4 +14,12 @@ Scenario:
     | PHPNW | 2011-10-08 09:00:00 | Ramada Hotel           | An awesome conf! |
     | PHPUK | 2012-02-27 09:00:00 | London Business Center | Quite good conf. |
 
+
+Scenario: Events created using php arrays save correctly
+    Given The events described in the featurecontext class exist
+    When I select all records from the event table
+    Then I should see the following records
+    | name  | datetime            | venue                  | description      |
+    | PHPNW | 2011-10-08 09:00:00 | Ramada Hotel           | An awesome conf! |
+    | PHPUK | 2012-02-27 09:00:00 | London Business Center | Quite good conf. |
 

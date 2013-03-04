@@ -321,6 +321,33 @@ class Entity
             // execute callbacks / fire afterInsert event
         }
     }
+    
+    
+    /**
+     * Creates an entity based on data from an array.
+     * By default the data is augmented by the default values supplied.
+     *
+     * @param array   $data        Data from a gherkin table (top row of header with subsequent rows of data)
+     * @param boolean $defaultFlag
+     *
+     * @return void
+     */
+    public function insertFromArray(array $dataArray, $defaultFlag = true)
+    {
+        $data = $this->processTable($dataArray);
+
+        foreach($data as &$row)
+        {
+            if($defaultFlag)
+            {
+                $this->mergeDefaults($row);
+            }
+
+            $this->ds->insert($this, $row);
+
+            // execute callbacks / fire afterInsert event
+        }
+    }
 
     /**
      * Update a previously inserted entity with the new data from a gherkin table.
@@ -350,12 +377,16 @@ class Entity
      *
      * @return array
      */
-    protected function processTable(TableNode $table)
+    protected function processTable($data)
     {
-
+        
+        if($data instanceof TableNode) {
+            $data = $data->getHash();
+        }
+    
         $rows = array();
 
-        foreach($table->getHash() as $row)
+        foreach($data as $row)
         {
             $cols = array();
 
@@ -367,7 +398,6 @@ class Entity
             }
 
             $rows[] = $cols;
-
         }
 
         return $rows;
