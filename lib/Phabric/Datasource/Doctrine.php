@@ -372,7 +372,11 @@ class Doctrine implements IDatasource
      * @retun void
      */
     public function reset()
-    {
+    {   
+        $this->connection->query("SET foreign_key_checks = 0");
+        
+        try {
+        
         foreach ($this->resetMap as $entityName => $entity)
         {
             $tableName = $this->tableMappings[$entityName]['tableName'];
@@ -393,6 +397,11 @@ class Doctrine implements IDatasource
                 }
             }
         }
+        } catch(\Exception $e) {
+            $this->connection->query("SET foreign_key_checks = 1");
+        }
+        
+        $this->connection->query("SET foreign_key_checks = 1");
     }
 
 }
